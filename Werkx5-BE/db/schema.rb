@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160831150408) do
     t.string   "offer"
     t.string   "description"
     t.string   "worker"
+    t.string   "job_status"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

@@ -43,4 +43,32 @@ class JobsController < ApplicationController
     end
   end
 
+  def forupdate
+    found_job = Job.where(id: params[:id])
+    render json: found_job
+  end
+
+  def status
+    found_job = Job.where(id: params[:id])
+    updated = found_job.update(job_status: "Completed")
+    if updated
+      render json: updated
+    else
+      render json: {'error': updated.errors}
+    end
+  end
+
+  def edit
+    found_job = Job.where(id: params[:id])
+    updated = found_job.update(job_name: params[:job_name], offer: params[:offer], zip: params[:zip], description: params[:description])
+    render json: found_job
+  end
+
+  def destroy
+    found_job = Job.where(id: params[:id])
+    Job.destroy(found_job)
+    updated = Job.where(username: params[:username])
+    render json: {'job': updated}
+ end
+
 end

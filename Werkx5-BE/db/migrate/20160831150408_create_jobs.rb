@@ -7,6 +7,7 @@ class CreateJobs < ActiveRecord::Migration[5.0]
       t.string :offer
       t.string :description
       t.string :worker
+      t.string :job_status
       t.timestamps
     end
   end
