@@ -10,6 +10,12 @@ class JobsController < ApplicationController
     render json: jobs
   end
 
+  def work
+    puts "params", params
+    jobs = Job.where(worker: params[:username])
+    render json: jobs
+  end
+
   def show
     job = Job.where(zip: params[:zip])
     render json: job
@@ -23,6 +29,17 @@ class JobsController < ApplicationController
       render json: new_job
     else
       render json: {'error': new_job.errors}
+    end
+  end
+
+  def take
+    puts "take params: #{params[:username]}, jobId: #{params[:id]}"
+    found_job = Job.where(id: params[:id])
+    updated = found_job.update(worker: params[:username])
+    if updated
+      render json: updated
+    else
+      render json: {'error': updated.errors}
     end
   end
 
