@@ -5,6 +5,11 @@ class JobsController < ApplicationController
     render json: jobs
   end
 
+  def list
+    jobs = Job.where(username: params[:username])
+    render json: jobs
+  end
+
   def show
     job = Job.where(zip: params[:zip])
     render json: job
